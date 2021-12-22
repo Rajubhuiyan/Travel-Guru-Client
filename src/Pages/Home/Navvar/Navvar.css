@@ -1,0 +1,13 @@
+.nav-container{
+    background-color: rgba(255, 255, 255, 0) !important;
+    border: none;
+    box-shadow: none !important;
+}
+.login-btn{
+    background-color: #F9A51A;
+    padding: 10px 25px 10px 25px;
+    margin-top: -10px;
+    border-radius: 3px;
+    color: black;
+    font-weight: 620;
+}
