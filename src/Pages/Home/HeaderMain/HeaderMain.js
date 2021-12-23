@@ -1,5 +1,6 @@
 import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeaderMain = (props) => {
     const { data } = props;
@@ -13,10 +14,10 @@ const HeaderMain = (props) => {
                     <Typography color="white" variant="overline" gutterBottom component="div">
                         {data?.description}
                     </Typography>
-                    <button onClick={() => console.log(data.id)} style={{border: 'none', cursor: 'pointer', fontSize:'20px', fontWeight: 400, marginTop: '10px'}} className="login-btn">Booking</button>
+                    <Link to={`/booking/${data?._id}`}><button style={{border: 'none', cursor: 'pointer', fontSize:'20px', fontWeight: 400, marginTop: '10px'}} className="login-btn">Booking</button></Link>
                 </Grid>
                 <Grid xs={6} sm={6} item>
-                    <img style={{width: '300px'}} src={data?.img} alt="" />
+                    <img style={{width: '300px'}} src={`data:image/png;base64,${data?.image}`} alt="" />
                 </Grid>
             </Grid>
         </div>

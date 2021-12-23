@@ -6,20 +6,21 @@ import "slick-carousel/slick/slick-theme.css";
 
 import Slider from 'react-slick';
 import HeaderMain from '../HeaderMain/HeaderMain';
+import Loader from '../../Shared/Loader/Loader';
 
 
 const Header = () => {
 
     const [locationData, setLocationData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:5000/getLoctionData')
-        .then(res => res.json())
-        .then(data => data && setLocationData)
-        .catch(err => console.error(err))
+            .then(res => res.json())
+            .then(data => { data && setLocationData(data); setIsLoading(false) })
+            .catch(err => console.error(err))
     }, [])
 
-    
 
     var settings = {
         dots: true,
@@ -57,16 +58,21 @@ const Header = () => {
         ]
     };
 
+
+
     return (
 
         <Container sx={{ mt: 5 }}>
-            <div>
-                <Slider {...settings}>
-                    {locationData.map(data => <HeaderMain key={data.id} data={data} />)}
-                </Slider>
-            </div>
+            {isLoading === true ? <Loader /> :
+                <div>
+                    <Slider {...settings}>
+                        {locationData.map(data => <HeaderMain key={data.id} data={data} />)}
+                    </Slider>
+                </div>
+            }
 
-            
+
+
         </Container>
     );
 };

@@ -9,7 +9,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import logo from '../../../images/Untitled-1.png'
+import whiteLogo from '../../../images/Untitled-1.png';
+import blackLogo from '../../../images/Logo.png';
 import {  Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 import './Navvar.css';
@@ -17,6 +18,7 @@ import './Navvar.css';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
+    color:'black',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
@@ -38,7 +40,8 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    color: 'black'
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -55,8 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function Navvar() {
-
+export default function Navvar({search}) {
 
 
 
@@ -97,6 +99,7 @@ export default function Navvar() {
             transformOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
+
             }}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
@@ -127,7 +130,7 @@ export default function Navvar() {
             <Box sx={{ flexGrow: 1, }}>
                 <AppBar className="nav-container" position="static">
                     <Toolbar>
-                        <Link style={{textDecoration:"none"}} to="/"><img style={{ width: '120px' }} src={logo} alt="" /></Link>
+                        <Link style={{textDecoration:"none"}} to="/"><img style={{ width: '120px' }} src={search === true ? blackLogo: whiteLogo} alt="" /></Link>
                         <Search>
                             <SearchIconWrapper>
                                 <SearchIcon />
@@ -139,11 +142,11 @@ export default function Navvar() {
                         </Search>
                         <Box sx={{ flexGrow: 1 }} />
                         <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                            <Link style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>News</Link>
-                            <Link style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>Destination</Link>
-                            <Link style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>Blog</Link>
-                            <Link style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>Contact</Link>
-                            <Link className='login-btn' style={{ textDecoration: 'none' }} to='/'>Log In</Link>
+                            <Link className={search === true ? 'black' : 'white'} style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>News</Link>
+                            <Link className={search === true ? 'black' : 'white'} style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>Destination</Link>
+                            <Link className={search === true ? 'black' : 'white'} style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>Blog</Link>
+                            <Link className={search === true ? 'black' : 'white'} style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>Contact</Link>
+                            <Link className={search === true ? 'black login-btn' : 'white login-btn'} style={{ textDecoration: 'none' }} to='/'>Log In</Link>
                         </Box>
                         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                             <IconButton

@@ -11,3 +11,10 @@
     color: black;
     font-weight: 620;
 }
+
+.black{
+    color: black !important;
+}
+.MuiSvgIcon-root{
+    color: rgba(0, 0, 0, 0.803);
+}
