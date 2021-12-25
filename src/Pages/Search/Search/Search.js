@@ -1,5 +1,5 @@
 import React from 'react';
-import Navvar from '../../Home/Navvar/Navvar';
+import Navvar from '../../Shared/Navvar/Navvar';
 import SearchMain from '../SearchMain/SearchMain';
 
 const Search = () => {

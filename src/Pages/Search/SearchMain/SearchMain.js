@@ -21,10 +21,10 @@ const SearchMain = () => {
         <Container>
             {isLoading === true ? <Loader /> :
                 <Grid sx={{mt:2}} container>
-                    <Grid md={6} item>
+                    <Grid md={7} item>
                         {searchData.map(data => <HotelSide key={data._id} data={data} />)}
                     </Grid>
-                    <Grid md={6} item>
+                    <Grid md={5} item>
                         <MapSide />
                     </Grid>
                 </Grid>

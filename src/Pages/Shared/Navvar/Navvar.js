@@ -11,14 +11,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import whiteLogo from '../../../images/Untitled-1.png';
 import blackLogo from '../../../images/Logo.png';
-import {  Container } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Container } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
 import './Navvar.css';
+import useAuth from '../../Hooks/useAuth';
 
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
-    color:'black',
+    color: 'black',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
@@ -58,9 +59,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function Navvar({search}) {
+export default function Navvar({ search }) {
 
 
+
+    const { token, handleSignOut } = useAuth();
+    const location = useLocation();
 
 
 
@@ -77,14 +81,14 @@ export default function Navvar({search}) {
         setMobileMoreAnchorEl(null);
     };
 
-   
+
 
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
 
-    
+
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -105,7 +109,7 @@ export default function Navvar({search}) {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <Link style={{ textDecoration: 'none', color: 'black', marginRight: '23px',}} to='/'>News</Link>
+                <Link style={{ textDecoration: 'none', color: 'black', marginRight: '23px', }} to='/'>News</Link>
             </MenuItem>
             <MenuItem>
                 <Link style={{ textDecoration: 'none', color: 'black', marginRight: '23px' }} to='/'>Destination</Link>
@@ -116,9 +120,16 @@ export default function Navvar({search}) {
             <MenuItem onClick={handleProfileMenuOpen}>
                 <Link style={{ textDecoration: 'none', color: 'black', marginRight: '23px' }} to='/'>Contact</Link>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <Link style={{ textDecoration: 'none', color: 'black' }} to='/'>Log In</Link>
-            </MenuItem>
+            {token !== '' ?
+                <MenuItem onClick={handleProfileMenuOpen}>
+                    <Link onClick={handleSignOut} style={{ textDecoration: 'none', color: 'black' }} to='/'>Log Out</Link>
+                </MenuItem>
+                :
+                <MenuItem onClick={handleProfileMenuOpen}>
+                    <Link style={{ textDecoration: 'none', color: 'black' }} to='/login'>Log In</Link>
+                </MenuItem>
+
+            }
         </Menu>
     );
 
@@ -130,7 +141,7 @@ export default function Navvar({search}) {
             <Box sx={{ flexGrow: 1, }}>
                 <AppBar className="nav-container" position="static">
                     <Toolbar>
-                        <Link style={{textDecoration:"none"}} to="/"><img style={{ width: '120px' }} src={search === true ? blackLogo: whiteLogo} alt="" /></Link>
+                        <Link style={{ textDecoration: "none" }} to="/"><img style={{ width: '120px' }} src={search === true ? blackLogo : whiteLogo} alt="" /></Link>
                         <Search>
                             <SearchIconWrapper>
                                 <SearchIcon />
@@ -146,7 +157,7 @@ export default function Navvar({search}) {
                             <Link className={search === true ? 'black' : 'white'} style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>Destination</Link>
                             <Link className={search === true ? 'black' : 'white'} style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>Blog</Link>
                             <Link className={search === true ? 'black' : 'white'} style={{ textDecoration: 'none', color: 'white', marginRight: '23px' }} to='/'>Contact</Link>
-                            <Link className={search === true ? 'black login-btn' : 'white login-btn'} style={{ textDecoration: 'none' }} to='/'>Log In</Link>
+                            {token ? <button onClick={handleSignOut} className={search === true ? 'black login-btn' : 'white login-btn'} style={{ textDecoration: 'none', border: 'none', cursor: 'pointer', fontWeight:500 }} >Log Out</button> : <Link className={search === true ? 'black login-btn' : 'white login-btn'} style={{ textDecoration: 'none' }} to='/login'>Log In</Link>}
                         </Box>
                         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                             <IconButton

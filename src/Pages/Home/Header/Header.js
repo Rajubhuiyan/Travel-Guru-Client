@@ -2,14 +2,13 @@ import { Container } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-
 import Slider from 'react-slick';
 import HeaderMain from '../HeaderMain/HeaderMain';
 import Loader from '../../Shared/Loader/Loader';
 
 
 const Header = () => {
+
 
     const [locationData, setLocationData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
