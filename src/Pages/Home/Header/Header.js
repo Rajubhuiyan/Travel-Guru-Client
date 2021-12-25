@@ -44,7 +44,7 @@ const Header = () => {
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 2,
-                    initialSlide: 2
+                    initialSlide: 2,
                 }
             },
             {
@@ -63,8 +63,8 @@ const Header = () => {
 
         <Container sx={{ mt: 5 }}>
             {isLoading === true ? <Loader /> :
-                <div>
-                    <Slider {...settings}>
+                <div style={{paddingRight: '15px', paddingLeft: '15px'}}>
+                    <Slider style={{paddingRight:'60px'}} {...settings}>
                         {locationData.map(data => <HeaderMain key={data.id} data={data} />)}
                     </Slider>
                 </div>

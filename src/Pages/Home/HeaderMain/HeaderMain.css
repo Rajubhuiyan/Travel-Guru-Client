@@ -1,0 +1,8 @@
+@media screen and (max-width: 600px) {
+    .home-img{
+        width:180px !important;
+    }
+    .typo{
+        font-size: 30px !important;
+    }
+}
